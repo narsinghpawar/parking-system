@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Parking Management System</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="module" src="script.js"></script>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="logo">
+            <span class="logo-icon">🚗</span>
+            <span class="logo-text">ParkSmart</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="#">Dashboard</a>
+            <a href="#">Vehicles</a>
+            <a href="#">Reports</a>
+        </nav>
+    </header>
+
+    <!-- ===== SEARCH SECTION ===== -->
+    <section class="search-section">
+        <div class="search-container">
+            <input id="searchInput" placeholder="Search Vehicle / Mobile" />
+            <button id="searchBtn">Search</button>
+        </div>
+    </section>
+
+    <!-- ===== KPI ===== -->
+    <section class="kpi-container">
+        <div class="kpi-card total">
+            <div class="kpi-label">Total Vehicles</div>
+            <div class="kpi-value" id="totalCount">0</div>
+        </div>
+
+        <div class="kpi-card in">
+            <div class="kpi-label">Vehicles IN</div>
+            <div class="kpi-value" id="inCount">0</div>
+        </div>
+
+        <div class="kpi-card out">
+            <div class="kpi-label">Vehicles OUT</div>
+            <div class="kpi-value" id="outCount">0</div>
+        </div>
+    </section>
+
+    <!-- ===== VEHICLE ACCORDION GRID ===== -->
+    <section id="vehicleContainer" class="vehicle-grid"></section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer">
+        <div>© 2026 ParkSmart</div>
+        <div>Smart Parking Management System</div>
+    </footer>
+
+</body>
+
+
+</html>
