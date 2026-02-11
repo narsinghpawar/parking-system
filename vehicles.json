@@ -1,0 +1,58 @@
+{
+  "vehicles": [
+    {
+      "vehicleNumber": "KA38Y5151",
+      "mobileNumber": "9663472221",
+      "status": "IN",
+      "currentSession": {
+        "checkIn": "2026-02-11T10:15:00Z"
+      },
+      "history": [
+        {
+          "checkIn": "2026-02-09T09:00:00Z",
+          "checkOut": "2026-02-09T11:00:00Z",
+          "durationMinutes": 120
+        },
+        {
+          "checkIn": "2026-02-10T14:00:00Z",
+          "checkOut": "2026-02-10T16:30:00Z",
+          "durationMinutes": 150
+        }
+      ],
+      "totalVisits": 3,
+      "totalMinutesParked": 270
+    },
+    {
+      "vehicleNumber": "KA01AB1234",
+      "mobileNumber": "9876543210",
+      "status": "OUT",
+      "currentSession": null,
+      "history": [
+        {
+          "checkIn": "2026-02-10T08:00:00Z",
+          "checkOut": "2026-02-10T09:30:00Z",
+          "durationMinutes": 90
+        }
+      ],
+      "totalVisits": 1,
+      "totalMinutesParked": 90
+    },
+    {
+      "vehicleNumber": "MH12XY9876",
+      "mobileNumber": "9123456780",
+      "status": "IN",
+      "currentSession": {
+        "checkIn": "2026-02-11T11:45:00Z"
+      },
+      "history": [],
+      "totalVisits": 1,
+      "totalMinutesParked": 0
+    }
+  ],
+  "parkingSummary": {
+    "totalSlots": 50,
+    "occupiedSlots": 2,
+    "availableSlots": 48,
+    "lastUpdated": "2026-02-11T12:00:00Z"
+  }
+}
