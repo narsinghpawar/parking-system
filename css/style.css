@@ -8,10 +8,12 @@
 
 body {
     margin: 0;
-    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-family: 'DM Sans', sans-serif;
     background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
     color: #1e293b;
 }
+
+
 
 /* ===============================
    HEADER
