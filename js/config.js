@@ -3,5 +3,5 @@ export const CONFIG = {
   REPO: "parking-system",
   FILE_PATH: "vehicles.json",
   TOKEN:
-    "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",
+    "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",
 };
