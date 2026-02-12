@@ -4,15 +4,17 @@ const container = document.getElementById("vehicleContainer");
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 
+let allVehicles = [];
+
 /* ==============================
    🔹 PAGE LOAD
 ============================== */
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const vehicles = await getAllVehicles();
-    renderVehicles(vehicles);
-    updateKPI(vehicles);
+    allVehicles = await getAllVehicles();
+    renderVehicles(allVehicles);
+    updateKPI(allVehicles);
   } catch (error) {
     container.innerHTML = `<p style="color:red;">Failed to load data</p>`;
   }
@@ -22,12 +24,10 @@ document.addEventListener("DOMContentLoaded", async () => {
    🔹 SEARCH
 ============================== */
 
-searchBtn.addEventListener("click", async () => {
+searchBtn.addEventListener("click", () => {
   const value = searchInput.value.trim().toLowerCase();
 
-  const vehicles = await getAllVehicles();
-
-  const filtered = vehicles.filter(
+  const filtered = allVehicles.filter(
     (v) =>
       v.vehicleNumber.toLowerCase().includes(value) ||
       v.mobileNumber.includes(value),
@@ -73,6 +73,23 @@ function renderVehicles(vehicles) {
             : ""
         }
 
+        <!-- ACTION BUTTONS -->
+        <div class="action-buttons">
+          <button 
+            class="btn checkin-btn"
+            ${vehicle.status === "IN" ? "disabled" : ""}
+            onclick="handleCheckIn(${index})">
+            Check In
+          </button>
+
+          <button 
+            class="btn checkout-btn"
+            ${vehicle.status === "OUT" ? "disabled" : ""}
+            onclick="handleCheckOut(${index})">
+            Check Out
+          </button>
+        </div>
+
         ${
           vehicle.history.length > 0
             ? `
@@ -89,14 +106,12 @@ function renderVehicles(vehicles) {
                 .map(
                   (h) => `
                 <tr>
+                  <td>${h.checkIn}</td>
+                  <td>${h.checkOut}</td>
                   <td>
-                    ${h.checkIn}
-                  </td>
-                  <td>
-                    ${h.checkOut}
-                  </td>
-                  <td>
-                    <span class="duration ${getDurationClass(h.durationMinutes)}">
+                    <span class="duration ${getDurationClass(
+                      h.durationMinutes,
+                    )}">
                       ${h.durationMinutes} min
                     </span>
                   </td>
@@ -117,6 +132,55 @@ function renderVehicles(vehicles) {
 }
 
 /* ==============================
+   🔹 CHECK IN LOGIC
+============================== */
+
+window.handleCheckIn = function (index) {
+  const vehicle = allVehicles[index];
+
+  if (vehicle.status === "OUT") {
+    vehicle.status = "IN";
+    vehicle.currentSession = {
+      checkIn: new Date().toISOString(),
+    };
+
+    vehicle.totalVisits += 1;
+
+    renderVehicles(allVehicles);
+    updateKPI(allVehicles);
+  }
+};
+
+/* ==============================
+   🔹 CHECK OUT LOGIC
+============================== */
+
+window.handleCheckOut = function (index) {
+  const vehicle = allVehicles[index];
+
+  if (vehicle.status === "IN") {
+    const checkInTime = new Date(vehicle.currentSession.checkIn);
+    const checkOutTime = new Date();
+
+    const durationMinutes = Math.floor((checkOutTime - checkInTime) / 60000);
+
+    vehicle.history.push({
+      checkIn: vehicle.currentSession.checkIn,
+      checkOut: checkOutTime.toISOString(),
+      durationMinutes,
+    });
+
+    vehicle.totalMinutesParked += durationMinutes;
+
+    vehicle.status = "OUT";
+    vehicle.currentSession = null;
+
+    renderVehicles(allVehicles);
+    updateKPI(allVehicles);
+  }
+};
+
+/* ==============================
    🔹 ACCORDION (Single Open)
 ============================== */
 
@@ -129,7 +193,6 @@ window.toggleAccordion = function (index) {
 
     if (i === index) {
       body.classList.toggle("open");
-
       arrow.style.transform = body.classList.contains("open")
         ? "rotate(180deg)"
         : "rotate(0deg)";

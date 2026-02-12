@@ -8,6 +8,9 @@
     <!-- Link CSS -->
     <link rel="stylesheet" href="css/style.css" />
     <script type="module" src="script.js"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
 </head>
 
 <body>
@@ -37,20 +40,30 @@
     <!-- ===== KPI ===== -->
     <section class="kpi-container">
         <div class="kpi-card total">
-            <div class="kpi-label">Total Vehicles</div>
+            <div class="kpi-header">
+                <i class="fa-solid fa-car-side kpi-icon"></i>
+                <div class="kpi-label">Total Vehicles</div>
+            </div>
             <div class="kpi-value" id="totalCount">0</div>
         </div>
 
         <div class="kpi-card in">
-            <div class="kpi-label">Vehicles IN</div>
+            <div class="kpi-header">
+                <i class="fa-solid fa-circle-arrow-down kpi-icon"></i>
+                <div class="kpi-label">Vehicles IN</div>
+            </div>
             <div class="kpi-value" id="inCount">0</div>
         </div>
 
         <div class="kpi-card out">
-            <div class="kpi-label">Vehicles OUT</div>
+            <div class="kpi-header">
+                <i class="fa-solid fa-circle-arrow-up kpi-icon"></i>
+                <div class="kpi-label">Vehicles OUT</div>
+            </div>
             <div class="kpi-value" id="outCount">0</div>
         </div>
     </section>
+
 
     <!-- ===== VEHICLE ACCORDION GRID ===== -->
     <section id="vehicleContainer" class="vehicle-grid"></section>
