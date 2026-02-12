@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Register Vehicle - ParkSmart</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="module" src="register.js"></script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="main-header">
+        <div class="logo">
+            <span class="logo-icon">🚗</span>
+            <span class="logo-text">ParkSmart</span>
+        </div>
+
+        <nav class="nav-links">
+            <a href="index.html">Dashboard</a>
+            <a href="register.html" class="active">Register Vehicle</a>
+        </nav>
+    </header>
+
+    <!-- ===== REGISTRATION SECTION ===== -->
+    <section class="register-section">
+        <div class="register-card">
+            <h2><i class="fa-solid fa-car"></i> Vehicle Registration</h2>
+
+            <form id="registerForm">
+
+                <!-- Mobile -->
+                <div class="form-group">
+                    <label><i class="fa-solid fa-phone"></i> Mobile Number</label>
+                    <input type="tel" id="mobileNumber" placeholder="Enter Mobile Number" required />
+                </div>
+
+                <!-- Vehicle -->
+                <div class="form-group">
+                    <label><i class="fa-solid fa-id-card"></i> Vehicle Number</label>
+                    <input type="text" id="vehicleNumber" placeholder="Enter Vehicle Number" required />
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="submit-btn">
+                    <i class="fa-solid fa-user-plus"></i> Register Vehicle
+                </button>
+
+            </form>
+
+            <p id="formMessage" class="form-message"></p>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="main-footer fixed-footer">
+        <div>© 2026 ParkSmart</div>
+        <div>Smart Parking Management System</div>
+    </footer>
+
+</body>
+
+</html>
